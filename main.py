@@ -1,6 +1,20 @@
 import csv
+from Visualizer.Drower import load_map, pygame, screen, draw_map, WHITE
 
-with open('res/map.csv', mode='r', encoding='utf-8') as file:
-    reader = csv.reader(file, delimiter='|')
-    for row in reader:
-        print(f"Старт: {row[0]}, Конец: {row[1]}")
+def main():
+    walls = load_map('res/map.csv')  # Убедитесь, что файл в той же директории
+    
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+        
+        screen.fill(WHITE)
+        draw_map(walls)
+        pygame.display.flip()
+    
+    pygame.quit()
+
+if __name__ == "__main__":
+    main()

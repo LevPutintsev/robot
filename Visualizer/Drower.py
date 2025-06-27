@@ -47,7 +47,7 @@ class Drower:
                 walls.append((start, end, name))
         self.walls = walls
 
-    def drow_stat(self):
+    def drow_stat(self, robot):
         # Создаем объект Surface для текста
         try:
             t = pygame.time.get_ticks()
@@ -58,6 +58,11 @@ class Drower:
             # Получаем прямоугольник для текста
             text_rect = text_surface.get_rect()
             text_rect.center = (self.WIDTH-50, 15)
+            self.screen.blit(text_surface, text_rect)
+
+            text_surface = self.font.render(str(robot.position), True, self.WHITE, self.BLACK)
+            text_rect = text_surface.get_rect()
+            text_rect.center = (self.WIDTH-200, 50)
             self.screen.blit(text_surface, text_rect)
         except:
             print('g')
